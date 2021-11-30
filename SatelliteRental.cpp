@@ -45,7 +45,23 @@ int main(){
     vector<int> satelliteNum(NumOfSatellite);
 
     // Assign each state into the string vector called 'locations'.
-    if (ifstream file {"states.txt"})
+
+    ifstream inFile("states.txt", ios::in);
+
+    if (!inFile) {
+        cerr << "File could not be opened." << endl;
+        exit(1);
+    }
+
+    string location;
+    while(inFile >> location)
+    {
+        locations.push_back(location);
+    }
+
+    inFile.close();
+/*
+    if (ifstream file{"states.txt"});
     {
         string location;
         while(file >> location)
@@ -56,7 +72,7 @@ int main(){
     else{
         cout << "<< ERROR >>: The program can't read the file for some reason. " << endl;
     }
-
+    */
     for (int count = 0; cout << NumOfSatellite; count++){
         satelliteNum.push_back(count + 5001);
     }
