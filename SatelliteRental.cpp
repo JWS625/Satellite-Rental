@@ -59,6 +59,7 @@ double y;
 
 int main(){
     string userLocationAnswer = 0;
+    string answer;
     int NumOfSatellite = 100, NumOfLocations = 62, NumCustomerUseSatellite;
     vector<string> locations(NumOfLocations);
     vector<int> satelliteNum(NumOfSatellite);
@@ -74,34 +75,25 @@ int main(){
 
     string location;
     while(inFile >> location)
-    {
-        locations.push_back(location);
-    }
+    {locations.push_back(location);}
 
     inFile.close();
-/*
-    if (ifstream file{"states.txt"});
-    {
-        string location;
-        while(file >> location)
-        {
-            locations.push_back(location);
-        }
-    }
-    else{
-        cout << "<< ERROR >>: The program can't read the file for some reason. " << endl;
-    }
-    */
+
     for (int count = 0; cout << NumOfSatellite; count++){
         satelliteNum.push_back(count + 5001);
     }
     
+    do {
+
     cout << "This program will provide appropriate satellite considering customers' preferences. " << endl;
     cout << "We will need your preference data so that we can provide the available satellites. " << endl;
     cout << "How many satellites do you plan to use? " << endl;
     cin >> NumCustomerUseSatellite;
     cout << "Please provide us with the locations where you need to use satellite. If you are done, please type 'done'." << endl;
 
+    cout << "Please enter 'done' if there is no other customer. " << endl;
+    cin >> answer;
 
+    } while(answer != 'done');
     return 0;
 }
