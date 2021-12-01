@@ -4,26 +4,15 @@
 #include <vector>
 using namespace std;
 
-class Rental {
-public:
-
-protected:
-};
-
-class Customers: Rental {
+class Customers{
 public:
     Customers();
 protected:
 };
 
-class Satellite: Rental {
+class Satellite{
 public:
-    Satellite(int productNum): productNum(productNum){
-        iSatellite++;
-    };
-    ~Satellite(){
-        iSatellite--;
-    };
+
 static int iSatellite;
 
 protected:
@@ -31,11 +20,41 @@ int productNum;
 
 };
 
-class Location: Satellite{
+class InfraredSatellite: Satellite {
 public:
+    InfraredSatellite(int productNum): productNum(productNum){
+        iInfraredSatellite++; };
+
+    ~InfraredSatellite(){
+        iInfraredSatellite--; };
+static int iInfraredSatellite;
 
 protected:
+int productNum;
+};
 
+class MicrowaveSatellite: Satellite {
+public:
+    MicrowaveSatellite(int productNum): productNum(productNum){
+        iMicrowaveSatellite++; };
+
+    ~MicrowaveSatellite(){
+        iMicrowaveSatellite--; };
+static int iMicrowaveSatellite;
+protected:
+int productNum;
+
+};
+
+
+class Location: MicrowaveSatellite, InfraredSatellite{
+public:
+    Location(double x, double y): x(x), y(y){
+        cout << "The inputted location is x:" << x << ", and y: " << y << "."<< endl;}
+
+protected:
+double x;
+double y;
 };
 
 int main(){
