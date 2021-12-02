@@ -1,99 +1,15 @@
+// Import Libraries
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
+// Import classes
+#include "include/Customers.h"
+#include "include/Satellite.h"
+#include "include/InfraredSatellite.h"
+#include "include/MicrowaveSatellite.h"
+
 using namespace std;
-
-/* Customer Class:
-This class is supposed to have user's information that has to do with Satellite's property.
-*/
-class Customers{
-public:
-    Customers();
-protected:
-};
-
-/* Satellite Class:
-Satellite class is pure virtual class which is the base class of InfraredSatellite and Microwave Satellite. 
-This class contains all the general properties of satellites. 
-*/
-class Satellite{
-public:
-virtual int getSerialNumber() = 0;
-virtual float getBatteryRemained() = 0;
-virtual void takePicture() = 0;
-int serialNum;
-float batteryRemained;
-
-};
-
-/* Infrared Satellite class:
-
-*/
-class InfraredSatellite: Satellite {
-public:
-    InfraredSatellite() {iInfraredSatellite ++;}
-
-    InfraredSatellite(int n): serialNumber(n){
-        iInfraredSatellite++; }
-
-    ~InfraredSatellite(){
-        iInfraredSatellite--; }
-    
-    int getSerialNumber() {return serialNumber;}
-    float getBatteryRemained() {return batteryRemained; }
-
-    void takePicture(){
-        cout << "The satellite is taking a picture of the location. " << endl;
-        cout << "Loading ...." << endl;
-    }
-static int iInfraredSatellite;
-
-protected:
-int serialNumber;
-float batteryRemained;
-};
-
-/* Microwave Satellite class:
-
-*/
-class MicrowaveSatellite: Satellite {
-public:
-    MicrowaveSatellite();
-
-    MicrowaveSatellite(int n): serialNumber(n){
-        iMicrowaveSatellite++; };
-
-    ~MicrowaveSatellite(){
-        iMicrowaveSatellite--; };
-    void takePicture(){
-        cout << "The satellite is taking a picture of the location. " << endl;
-        cout << "Loading ...." << endl;
-    }
-    int getSerialNumber() {return serialNumber;};
-    float getBatteryRemained() {return batteryRemained;};
-static int iMicrowaveSatellite;
-
-protected:
-int serialNumber;
-float batteryRemained;
-
-};
-
-/* Location class:
-
-*/
-class Location: MicrowaveSatellite, InfraredSatellite{
-public:
-    Location();
-
-    Location(double x, double y): x(x), y(y){
-        cout << "The inputted location is x:" << x << ", and y: " << y << "."<< endl;}
-
-protected:
-double x;
-double y;
-};
 
 int main(){
     string userLocationAnswer = 0;
@@ -118,7 +34,6 @@ int main(){
 
     inFile.close();
 
-    
     /*  Serial number of infrared satellites starts from 5000 
         while serial number of microwave satllites strats from 6000. */
 
