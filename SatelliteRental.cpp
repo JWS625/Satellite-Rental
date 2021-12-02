@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+
 // Import classes
 #include "include/Customers.h"
 #include "include/Satellite.h"

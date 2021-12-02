@@ -15,7 +15,6 @@ public:
 protected:
     int serialNumber;
     float batteryRemained;
-    
 };
 static int iInfraredSatellite;
 
