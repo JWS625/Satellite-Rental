@@ -16,18 +16,20 @@ int main(){
     string userLocationAnswer = 0;
     string answer;
     int numOfInfraredSatellites = 100, numOfMicrowaveSatellites = 50, numOfLocations = 62, NumCustomerUseSatellite;
-    vector<string> locations(numOfLocations);
+    vector<string> locations;
     vector<int> infrared_seiralNum(numOfInfraredSatellites);
     vector<int> microwave_seiralNum(numOfMicrowaveSatellites);
 
     // Assign each state into the string vector called 'locations'.
 
     ifstream inFile("states.txt", ios::in);
-
-    if (!inFile) {
-        cerr << "File could not be opened." << endl;
-        exit(1);
+    int i = 0;
+    if (inFile.is_open()) {
+        while(getline(inFile, locations[i])){
+            i++;}
     }
+    else
+        cout << "The file could not be opened. " << endl;
 
     string location;
     while(inFile >> location)
