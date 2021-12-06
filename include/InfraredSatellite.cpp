@@ -1,9 +1,10 @@
 #include <iostream>
+#include"Satellite.h"
 #include"InfraredSatellite.h"
 
-InfraredSatellite::InfraredSatellite(){ iInfraredSatellite++; }
-InfraredSatellite::InfraredSatellite(int ){iInfraredSatellite++;}
-InfraredSatellite::~InfraredSatellite(){ iInfraredSatellite--;}
+InfraredSatellite::InfraredSatellite() {}
+InfraredSatellite::InfraredSatellite(int ){}
+//InfraredSatellite::~InfraredSatellite(){}
 
 float InfraredSatellite::getBatteryRemained(){return batteryRemained; }
 int InfraredSatellite::getSerialNumber(){return serialNumber;}

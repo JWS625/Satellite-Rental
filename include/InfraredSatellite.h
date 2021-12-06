@@ -7,7 +7,7 @@ class InfraredSatellite: public Satellite {
 public:
     InfraredSatellite();
     InfraredSatellite(int);
-    ~InfraredSatellite();
+    //~InfraredSatellite();
 
     float getBatteryRemained();
     int getSerialNumber();
@@ -16,6 +16,6 @@ protected:
     int serialNumber;
     float batteryRemained;
 };
-static int iInfraredSatellite;
+// static int iInfraredSatellite;
 
 #endif /*INFRAREDSATELLITE_H_*/

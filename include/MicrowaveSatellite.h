@@ -6,18 +6,18 @@ class MicrowaveSatellite: public Satellite {
     public:
     MicrowaveSatellite();
     MicrowaveSatellite(int );
-    ~MicrowaveSatellite();
+    //~MicrowaveSatellite();
     
     void takePicture();
 
     // Getters
-    int getSerialNumber(){return serialNumber; };
-    float getBatteryRemained(){return batteryRemained; };
+    int getSerialNumber();
+    float getBatteryRemained();
 
     protected:
     int serialNumber;
     float batteryRemained;
 };
-static int iMicrowaveSatellite;
+// static int iMicrowaveSatellite;
 
 #endif /*SATELLITE_H_*/

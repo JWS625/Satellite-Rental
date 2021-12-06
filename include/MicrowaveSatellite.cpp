@@ -1,9 +1,10 @@
 #include <iostream>
+#include "Satellite.h"
 #include "MicrowaveSatellite.h"
 
-MicrowaveSatellite::MicrowaveSatellite(){iMicrowaveSatellite++;}
-MicrowaveSatellite::MicrowaveSatellite(int n): serialNumber(n){iMicrowaveSatellite++;}
-MicrowaveSatellite::~MicrowaveSatellite(){iMicrowaveSatellite--;}
+MicrowaveSatellite::MicrowaveSatellite(){}
+MicrowaveSatellite::MicrowaveSatellite(int n): serialNumber(n){}
+//MicrowaveSatellite::~MicrowaveSatellite(){}
 
 int MicrowaveSatellite::getSerialNumber(){return serialNumber;}
 float MicrowaveSatellite::getBatteryRemained(){return batteryRemained;}

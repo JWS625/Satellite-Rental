@@ -8,7 +8,7 @@ virtual float getBatteryRemained() = 0;
 virtual void takePicture() = 0;
 int serialNum;
 float batteryRemained;
-
+//virtual ~Satellite() = 0;
 };
 
 #endif /* SATELLITE_H_ */
