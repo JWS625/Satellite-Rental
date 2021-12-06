@@ -12,6 +12,11 @@
 
 using namespace std;
 
+//Customer functions
+void fillCustomerInfo(vector<Customers>& );
+void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>&, int&);
+void fillInfraredSatelliteInfo(vector<InfraredSatellite>&, int&);
+
 int main(){
 
     string answer;
@@ -48,16 +53,20 @@ int main(){
     /*  Serial number of infrared satellites starts from 5000 
         while serial number of microwave satllites strats from 6000. */
 
-    vector<InfraredSatellite> infrared_satellites_vector;
-    vector<MicrowaveSatellite> microwave_satellites_vector;
+    vector<InfraredSatellite> infrared_satellites_vector(numOfInfraredSatellites);
+    vector<MicrowaveSatellite> microwave_satellites_vector(numOfMicrowaveSatellites);
+
+    fillMicrowaveSatelliteInfo(microwave_satellites_vector);
+    fillInfraredSatelliteInfo(infrared_satellites_vector);
+
     // for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
-        // InfraredSatellite infraredSatellite(infrared_serailNum[infraredNum]);
-        // infrared_satellites_vector.push_back(infraredSatellite);
-    //}
+    //     InfraredSatellite infraredSatellite(infrared_serailNum[infraredNum]);
+    //     infrared_satellites_vector.push_back(infraredSatellite);
+    // }
 
     // for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
-        // MicrowaveSatellite microwaveSatellite;
-        // microwave_satellites_vector.push_back(microwaveSatellite);
+    //     MicrowaveSatellite microwaveSatellite;
+    //     microwave_satellites_vector.push_back(microwaveSatellite);
     // }
 
     // The Program Asks Users Specific Questions From Here.
@@ -73,4 +82,27 @@ int main(){
 
     // } while(answer != "done" && answer != "Done");
     return 0;
+}
+
+void fillCustomerInfo(vector<Customers>& customer) {
+
+    string name;
+    int phoneNum;
+    
+    cout << "Hi This is Satellite Rental System (S.R.S). " << endl;
+    cout << "Please provide your name. " << endl;
+    cin >> name;
+
+    cout << "Please provide your phone number. " << endl;
+    cin >> phoneNum;
+}
+
+void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>& microwave, int& serialNum){
+    
+    
+}
+
+void fillInfraredSatelliteInfo(vector<InfraredSatellite>& infrared, int& serialNum){
+
+
 }
