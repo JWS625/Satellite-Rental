@@ -8,7 +8,7 @@
 #include "include/Customers.h"
 #include "include/Satellite.h"
 #include "include/InfraredSatellite.h"
-// #include "include/MicrowaveSatellite.h"
+#include "include/MicrowaveSatellite.h"
 
 using namespace std;
 
@@ -21,29 +21,38 @@ int main(){
     vector<int> microwave_seiralNum(numOfMicrowaveSatellites);
 
     // Assign each state into the string vector called 'locations'.
+    fstream myFile;
+    myFile.open("states.txt", ios::in);
 
-    ifstream inFile("states.txt", ios::in);
-    int i = 0;
-    if (inFile.is_open()) {
-        while(getline(inFile, locations[i])){
-            i++;} }
-    // else
-    //     cout << "The file could not be opened. " << endl;
+    // ifstream inFile("states.txt", ios::in);
+    if (myFile.is_open()){
+        string locationdata;
+        while (getline(myFile, locationdata)){
+            locationdata.erase(remove(locationdata.begin(), locationdata.end(), '\''),
+            locationdata.end());
+            locationdata.erase(remove(locationdata.begin(), locationdata.end(), ','),
+            locationdata.end());
+            locations.push_back(locationdata);
+        }
+    }
+    else {
+        cerr << "File could not be opened. " << endl;
+        exit(1);
+    }
 
-    // string location;
-    // while(inFile >> location)
-    // {locations.push_back(location);}
-
-    // inFile.close();
+    vector<string>::iterator iter;
+    for (iter = locations.begin(); iter != locations.end(); iter++){
+        cout << (*iter) << endl;
+    }
 
     /*  Serial number of infrared satellites starts from 5000 
         while serial number of microwave satllites strats from 6000. */
 
-    // vector<InfraredSatellite> infrared_satellites_vector;
-    // vector<MicrowaveSatellite> microwave_satellites_vector;
-    //for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
-        //InfraredSatellite infraredSatellite(infrared_serailNum[infraredNum]);
-        //infrared_satellites_vector.push_back(infraredSatellite);
+    vector<InfraredSatellite> infrared_satellites_vector;
+    vector<MicrowaveSatellite> microwave_satellites_vector;
+    // for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
+        // InfraredSatellite infraredSatellite(infrared_serailNum[infraredNum]);
+        // infrared_satellites_vector.push_back(infraredSatellite);
     //}
 
     // for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
