@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 
-// Import classe
-#include "include/Customers.h"
+// Import Classe
+#include "include/Customer.h"
+#include "include/Customer.cpp"
 #include "include/Satellite.h"
 #include "include/InfraredSatellite.h"
 #include "include/InfraredSatellite.cpp"
@@ -14,22 +15,22 @@
 
 using namespace std;
 
-//Customer functions
-void fillCustomerInfo(vector<Customers>& );
-//void fillInfraredSatelliteInfo(vector<InfraredSatellite>&, int&);
+// Customer Interface Function
+Customer* requestInputs();
 
 int main(){
 
     string answer;
     int numOfInfraredSatellites = 100, numOfMicrowaveSatellites = 50, numOfLocations = 62, NumCustomerUseSatellite;
     vector<string> locations;
+    // Customer* NewCustomer =
 
     int infrared_serialNum[numOfInfraredSatellites];
     int microwave_seiralNum[numOfMicrowaveSatellites];
 
     vector<InfraredSatellite> infrared_satellites_vector(numOfInfraredSatellites);
     vector<MicrowaveSatellite> microwave_satellites_vector(numOfMicrowaveSatellites);
-    
+
     // Assign each state into the string vector called 'locations'.
     fstream myFile;
     myFile.open("states.txt", ios::in);
@@ -50,10 +51,10 @@ int main(){
         exit(1);
     }
 
-    vector<string>::iterator iter;
-    for (iter = locations.begin(); iter != locations.end(); iter++){
-        cout << (*iter) << endl;
-    }
+    // vector<string>::iterator iter;
+    // for (iter = locations.begin(); iter != locations.end(); iter++){
+    //     cout << (*iter) << endl;
+    // }
 
     for (int i = 0; i < numOfInfraredSatellites; ++i){
         infrared_serialNum[i] = 5000 + i;}
@@ -64,44 +65,67 @@ int main(){
 
     for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
         InfraredSatellite infraredSatellite(infrared_serialNum[infraredNum]);
-        infrared_satellites_vector.push_back(infraredSatellite);}
-
+        //infraredSatellite.getLocation();
+        infrared_satellites_vector.push_back(infraredSatellite);
+        
+        }
     for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
         MicrowaveSatellite microwaveSatellite(microwave_seiralNum[microNum]);
-        microwave_satellites_vector.push_back(microwaveSatellite);
-    }
+        microwave_satellites_vector.push_back(microwaveSatellite);}
 
-    // The Program Asks Users Specific Questions From Here.
-    // do {
-    // cout << "This program will provide appropriate satellite considering customers' preferences. " << endl;
-    // cout << "We will need your preference data so that we can provide the available satellites. " << endl;
-    // cout << "How many satellites do you plan to use? " << endl;
-    // cin >> NumCustomerUseSatellite;
-    // cout << "Please provide us with the locations where you need to use the satellites. If you are done, please type 'done'." << endl;
-    
-    // cout << "Please enter 'done' if there is no other customer. " << endl;
-    // cin >> answer;
 
-    // } while(answer != "done" && answer != "Done");
+    //Customer Interface Starts Here.
+    Customer* NewCustomer = requestInputs();
     return 0;
 }
 
-void fillCustomerInfo(vector<Customers>& customer) {
 
-    string name;
-    int phoneNum;
-    
-    cout << "Hi This is Satellite Rental System (S.R.S). " << endl;
-    cout << "Please provide your name. " << endl;
-    cin >> name;
+Customer* requestInputs()
+{
+	//Create new Customer object
+	Customer* NewCustomer = new Customer;
+    string stringName;
+    string stringEmail;
+	//Welcome new customer
+	cout << "\nWelcome to Satellite Rental" << endl;
 
-    cout << "Please provide your phone number. " << endl;
-    cin >> phoneNum;
+	//Request customer name
+	cout << "Please input your name: ";
+	cin >> stringName;
+
+	//Iterate through name to make sure it only contains letters
+	int i = 0;
+	while (i < stringName.size())
+	{
+		if (int(stringName[i]) > 64 | int(stringName[i]) > 122 | int(stringName[i]) < 97 | int(stringName[i]) > 90)
+		{
+			//Check for spaces in name
+			if (int(stringName[i]) != 32)
+			{
+				cout << "Must input a real name" << endl;
+				requestInputs();
+			}
+		}
+	}
+
+	//Request customer email
+	cout << "Please input your email: ";
+	cin >> stringEmail;
+
+	//Iterate input email to verify validity
+	int j = 0;
+	while (j < stringEmail.size())
+	{
+		if (stringEmail[j] == '@') { break; }
+
+		//Request again if there is no @ character
+		if (i == stringEmail.size() - 1)
+		{
+			cout << "Input a valid email address" << endl;
+			requestInputs();
+		}
+	}
+	NewCustomer->setEmail(stringEmail);
+
+	return NewCustomer;
 }
-
-// void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>& microwave, int& serialNum){
-    
-// }
-
-// void fillInfraredSatelliteInfo(vector<InfraredSatellite>& infrared, int& serialNum){
-// }
