@@ -26,9 +26,10 @@ int main(){
 
     int infrared_serialNum[numOfInfraredSatellites];
     int microwave_seiralNum[numOfMicrowaveSatellites];
-    // vector<int> infrared_seiralNum(numOfInfraredSatellites);
-    // vector<int> microwave_seiralNum(numOfMicrowaveSatellites);
 
+    vector<InfraredSatellite> infrared_satellites_vector(numOfInfraredSatellites);
+    vector<MicrowaveSatellite> microwave_satellites_vector(numOfMicrowaveSatellites);
+    
     // Assign each state into the string vector called 'locations'.
     fstream myFile;
     myFile.open("states.txt", ios::in);
@@ -61,21 +62,14 @@ int main(){
     /*  Serial number of infrared satellites starts from 5000 
         while serial number of microwave satllites strats from 6000. */
 
-    vector<InfraredSatellite> infrared_satellites_vector(numOfInfraredSatellites);
-    vector<MicrowaveSatellite> microwave_satellites_vector(numOfMicrowaveSatellites);
-
-    // fillMicrowaveSatelliteInfo(microwave_satellites_vector);
-    // fillInfraredSatelliteInfo(infrared_satellites_vector);
-
     for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
-        InfraredSatellite infraredSatellite(infrared_serialNum);
-        infrared_satellites_vector.push_back(infraredSatellite);
-    }
+        InfraredSatellite infraredSatellite(infrared_serialNum[infraredNum]);
+        infrared_satellites_vector.push_back(infraredSatellite);}
 
-    // for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
-    //     MicrowaveSatellite microwaveSatellite;
-    //     microwave_satellites_vector.push_back(microwaveSatellite);
-    // }
+    for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
+        MicrowaveSatellite microwaveSatellite(microwave_seiralNum[microNum]);
+        microwave_satellites_vector.push_back(microwaveSatellite);
+    }
 
     // The Program Asks Users Specific Questions From Here.
     // do {
