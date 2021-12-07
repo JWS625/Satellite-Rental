@@ -8,22 +8,26 @@
 #include "include/Customers.h"
 #include "include/Satellite.h"
 #include "include/InfraredSatellite.h"
+#include "include/InfraredSatellite.cpp"
 #include "include/MicrowaveSatellite.h"
+#include "include/MicrowaveSatellite.cpp"
 
 using namespace std;
 
 //Customer functions
 void fillCustomerInfo(vector<Customers>& );
-void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>&, int&);
-void fillInfraredSatelliteInfo(vector<InfraredSatellite>&, int&);
+//void fillInfraredSatelliteInfo(vector<InfraredSatellite>&, int&);
 
 int main(){
 
     string answer;
     int numOfInfraredSatellites = 100, numOfMicrowaveSatellites = 50, numOfLocations = 62, NumCustomerUseSatellite;
     vector<string> locations;
-    vector<int> infrared_seiralNum(numOfInfraredSatellites);
-    vector<int> microwave_seiralNum(numOfMicrowaveSatellites);
+
+    int infrared_serialNum[numOfInfraredSatellites];
+    int microwave_seiralNum[numOfMicrowaveSatellites];
+    // vector<int> infrared_seiralNum(numOfInfraredSatellites);
+    // vector<int> microwave_seiralNum(numOfMicrowaveSatellites);
 
     // Assign each state into the string vector called 'locations'.
     fstream myFile;
@@ -50,19 +54,23 @@ int main(){
         cout << (*iter) << endl;
     }
 
+    for (int i = 0; i < numOfInfraredSatellites; ++i){
+        infrared_serialNum[i] = 5000 + i;}
+    for (int i = 0; i < numOfMicrowaveSatellites; ++i) {
+        microwave_seiralNum[i] = 6000 + i;}
     /*  Serial number of infrared satellites starts from 5000 
         while serial number of microwave satllites strats from 6000. */
 
     vector<InfraredSatellite> infrared_satellites_vector(numOfInfraredSatellites);
     vector<MicrowaveSatellite> microwave_satellites_vector(numOfMicrowaveSatellites);
 
-    fillMicrowaveSatelliteInfo(microwave_satellites_vector);
-    fillInfraredSatelliteInfo(infrared_satellites_vector);
+    // fillMicrowaveSatelliteInfo(microwave_satellites_vector);
+    // fillInfraredSatelliteInfo(infrared_satellites_vector);
 
-    // for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
-    //     InfraredSatellite infraredSatellite(infrared_serailNum[infraredNum]);
-    //     infrared_satellites_vector.push_back(infraredSatellite);
-    // }
+    for (int infraredNum = 0; infraredNum < numOfInfraredSatellites; ++infraredNum){
+        InfraredSatellite infraredSatellite(infrared_serialNum);
+        infrared_satellites_vector.push_back(infraredSatellite);
+    }
 
     // for (int microNum = 0; microNum < numOfInfraredSatellites; ++microNum){
     //     MicrowaveSatellite microwaveSatellite;
@@ -97,12 +105,9 @@ void fillCustomerInfo(vector<Customers>& customer) {
     cin >> phoneNum;
 }
 
-void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>& microwave, int& serialNum){
+// void fillMicrowaveSatelliteInfo(vector<MicrowaveSatellite>& microwave, int& serialNum){
     
-    
-}
+// }
 
-void fillInfraredSatelliteInfo(vector<InfraredSatellite>& infrared, int& serialNum){
-
-
-}
+// void fillInfraredSatelliteInfo(vector<InfraredSatellite>& infrared, int& serialNum){
+// }
